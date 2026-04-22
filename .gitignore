@@ -20,4 +20,4 @@ yarn-error.log*
 # Editor-based HTTP Client requests
 /httpRequests/
 /.idea/
-/external files/
+/external files/*
