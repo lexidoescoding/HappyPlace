@@ -52,6 +52,11 @@ function runOnce(currentWord: string) {
                     variables.set(variableName, Number(currentWord))
                     break
                 }
+                case "var": {
+                    currentWord = getWord(text)
+                    variables.set(variableName, variables.get(currentWord))
+                    break
+                }
             }
             break
         }
@@ -86,6 +91,35 @@ function runOnce(currentWord: string) {
                 index = loopStart
             }
             index = loopEnd
+            break
+        }
+        case "add": {
+            const variableName = getWord(text)
+            currentWord = getWord(text)
+            let lhs = 0
+            let rhs = 0
+            switch (currentWord) {
+                case "var": {
+                    lhs = variables.get(getWord(text))
+                    break
+                }
+                case "number": {
+                    lhs = Number(getWord(text))
+                }
+            }
+            currentWord = getWord(text)
+            switch (currentWord) {
+                case "var": {
+                    rhs = variables.get(getWord(text))
+                    break
+                }
+                case "number": {
+                    rhs = Number(getWord(text))
+                }
+            }
+            const result = lhs + rhs
+            variables.set(variableName, result)
+            break
         }
 
     }
